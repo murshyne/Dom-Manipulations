@@ -102,8 +102,23 @@ topMenuEl.addEventListener("click", function (event) {
   if (event.target.tagName !== "A") {
     return;
   }
-  // You can add more code here to handle the click event
-  log("Menu item clicked:", event.target);
+  // Log the content of the <a> to verify the handler is working.
+  // log("Menu item clicked:", event.target);
+
+  // we will want to add a toggled "active" state to each menu item, showing whether or not it is currently selected
+  topMenuLinks.forEach((link) => link.classList.remove("active"));
+
+  // Added the active class to the <a> element that was clicked, unless it was already active, in which case it should remove it.
+  if (event.target.classList.contains("active")) {
+
+    // Remove if already active
+    event.target.classList.remove("active");
+  } else {
+
+    // Add if not active
+    event.target.classList.add("active");
+  }
+  log("Clicked link content:", event.target);
 });
   
 
