@@ -1,3 +1,1 @@
-menuLinks.forEach((link) => {
-    console.log(link)
-})
+const log = console.log.bind('console');

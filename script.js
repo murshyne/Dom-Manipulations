@@ -1,3 +1,4 @@
+const log = console.log.bind(console);
 // Menu data structure
 var menuLinks = [
   { text: "about", href: "/about" },
@@ -22,7 +23,7 @@ let mainEl = document.querySelector("main");
 // console.log(mainEl)
 
 // Set the background color of mainEl to the value stored in the --main-bg CSS custom property.
-// Hint: Assign a string that uses the CSS var() function like this: 'var(--main-bg)'.
+// Hint: Assign a string that uses the CSS var() function like this: 'var(--main-bg)'
 
 mainEl.style.backgroundColor = "var(--main-bg)";
 // Set the content of mainEl to <h1>DOM Manipulation</h1>. There are a variety of ways to do this; pick whichever one that you think works best in this situation.
@@ -36,7 +37,7 @@ mainEl.classList.add("flex-ctr");
 // Next, create a blank menu bar that we can use to later add some interactivity to the page:
 // Select and cache the <nav id="top-menu"> element in a variable named topMenuEl.
 let topMenuEl = document.getElementById("top-menu");
-console.log(topMenuEl);
+log(topMenuEl);
 // Set the height of the topMenuEl element to be 100%.
 topMenuEl.style.height = "100%";
 // Set the background color of topMenuEl to the value stored in the --top-menu-bg CSS custom property.
@@ -68,11 +69,8 @@ menuLinks.forEach((link) => {
 // ===============================================
 // Select and cache the <nav id="sub-menu"> element in a variable named subMenuEl.
 let subMenuEl = document.getElementById("sub-menu")
-  // Set the CSS position property of subMenuEl to the value of absolute.
-  // .style.position = "absolute"
-  // // Set the CSS top property of subMenuEl to the value of 0.
-  // .style.top = "0";
-
+log(subMenuEl);
+  
 // Set the height subMenuEl element to be "100%".
 subMenuEl.style.height = "100%";
 
@@ -84,4 +82,56 @@ subMenuEl.classList.add("flex-around");
 
 // Set the CSS position property of subMenuEl to the value of absolute.
 subMenuEl = document.getElementById("sub-menu")
+
+// Set the CSS position property of subMenuEl to the value of absolute.
+subMenuEl.style.position = ("absolute");
+
+// Set the CSS top property of subMenuEl to the value of 0.
+subMenuEl.style.top = ("0");
+
+// Select and cache the all of the <a> elements inside of topMenuEl in a variable named topMenuLinks.
+let topMenuLinks = topMenuEl.querySelectorAll('a');
+log(topMenuEl);
+
+// Attach a delegated 'click' event listener to topMenuEl.
+topMenuEl.addEventListener("click", function (event) {
+  // The first line of code of the event listener function should call the event object's preventDefault() method.
+  event.preventDefault();
+
+  // The second line of code of the function should immediately return if the element clicked was not an <a> element.
+  if (event.target.tagName !== "A") {
+    return;
+  }
+  // You can add more code here to handle the click event
+  log("Menu item clicked:", event.target);
+});
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
