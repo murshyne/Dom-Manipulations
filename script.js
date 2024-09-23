@@ -68,7 +68,7 @@ menuLinks.forEach((link) => {
 // R-ALAB 316.3.1: DOM Manipulation (Part Two)
 // ===============================================
 // Select and cache the <nav id="sub-menu"> element in a variable named subMenuEl.
-let subMenuEl = document.getElementById("sub-menu")
+let subMenuEl = document.getElementById("sub-menu");
 log(subMenuEl);
   
 // Set the height subMenuEl element to be "100%".
@@ -95,6 +95,7 @@ log(topMenuEl);
 
 // Attach a delegated 'click' event listener to topMenuEl.
 topMenuEl.addEventListener("click", function (event) {
+
   // The first line of code of the event listener function should call the event object's preventDefault() method.
   event.preventDefault();
 
@@ -103,50 +104,41 @@ topMenuEl.addEventListener("click", function (event) {
     return;
   }
   // Log the content of the <a> to verify the handler is working.
-  // log("Menu item clicked:", event.target);
+  log("Menu item clicked:", event.target.textContent);
 
   // we will want to add a toggled "active" state to each menu item, showing whether or not it is currently selected
+  let topMenuLinks = topMenuEl.querySelectorAll("a");
   topMenuLinks.forEach((link) => link.classList.remove("active"));
+
+  const clickedLinkText = event.target.textContent.trim();
+  const clickedLink = menuLinks.find((link) => link.text === clickedLinkText);
 
   // Added the active class to the <a> element that was clicked, unless it was already active, in which case it should remove it.
   if (event.target.classList.contains("active")) {
-
     // Remove if already active
     event.target.classList.remove("active");
-  } else {
 
+    // Hide submenu when clicked link is inactive
+    subMenuEl.style.top = "0";
+  } else {
     // Add if not active
     event.target.classList.add("active");
+
+    //
+  if (clickedLink && clickedLink.subLinks && clickedLink.subLinks.length > 0 ) {
+      subMenuEl.innerHTML = ""; // Clear existing submenu items
+      clickedLink.subLinks.forEach((subLink) => {
+        let subLinkElement = document.createElement("a");
+        subLinkElement.setAttribute("href", subLink.href);
+        subLinkElement.textContent = subLink.text;
+        subMenuEl.appendChild(subLinkElement);
+      });
+      subMenuEl.style.top = "100%"; // Show submenu
+    } else {
+      subMenuEl.style.top = "0"; // Hide submenu if no subLinks
+    }
   }
-  log("Clicked link content:", event.target);
+
+  log("Clicked link content:", event.target.textContent);
 });
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// ==============================================================
